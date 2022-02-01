@@ -41,9 +41,7 @@ copyStudent.friends.push("Ann") // ann добавится ко всем
 console.log(copyStudent)
 console.log(studentFirst)
 
-const trueCopyStudent = {
-    ...studentFirst,
-    friends: [...studentFirst.friends], // #A-098
+const trueCopyStudent = {...studentFirst, friends: [...studentFirst.friends], // #A-098
     name: "John"
 } //#567 - глубокое копирование
 
@@ -59,8 +57,8 @@ function func(num) {
 }
 
 //const toolKit = func(100)
-//const getHundred = toolKit[1]
 //const hundred = toolKit[0]
+//const getHundred = toolKit[1]
 
 const [hundred, getHundred] = func(100) // = [num, fn] - диструктурирующее присваивание
 const [ten, getTen] = func(10)
@@ -68,7 +66,7 @@ const [ten, getTen] = func(10)
 alert(hundred)
 getHundred();
 
-//Тема 3
+//Тема 3 мап
 
 const students = [
     {
@@ -97,9 +95,18 @@ const students = [
     }
 ]
 
-const getName = (st) => st.name   //кол бэк функция
+const copyStudents1 = students.map(s => s) //поверхностная копия
 
+const copyStudents2 = students.map(s => (s.name === "Nick") ? {...s, scores: s.scores + 10} : s) //глубокая копия
+console.log(copyStudents2)
+
+const copyStudents3 = students.map(s => {
+   return {...s}
+}) //глубокая копия
+
+const getName = (st) => st.name   //кол бэк функция (вставляем в мап ниже)
 const names = students.map(getName)  //метод мэп не мутирует исходный массив
+
 const names2 = students.map(st => `Hi, I'm ${st.name}. I'm ${st.age}.`)
 
 console.log(names)
