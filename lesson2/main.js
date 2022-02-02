@@ -27,7 +27,7 @@ const students = [
     }
 ]
 
-const getName = st => st.name
+const getName = s => s.name
 
 console.log(students.map(getName)) //используем имя функции в кач-ва callback
 //console.log(students.map(st => st.name)) используем ЛИТЕРАЛ функции в кач-ва callback
@@ -39,14 +39,18 @@ console.log(itMap(getName, students)) // map по нашей функции
 function itMap(callback, array) {
     const newArray = []
     for (let i = 0; i < array.length; i++) {
-        const itemOfNewArray = callback(array[i])
         //newArray[i] = itemOfNewArray тоже что и push
-        newArray.push(itemOfNewArray)
+        newArray.push(callback(array[i]))
     }
     return newArray
 }
 
 // --Фильтер метод--
+callbackFilter = (s) => {
+    return s.scores > 100
+}
+console.log(itFilter(callbackFilter, students))
+
 function itFilter(callback, array) {
     const newArray = []
     for (let i = 0; i < array.length; i++) {
