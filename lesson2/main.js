@@ -27,8 +27,10 @@ const students = [
     }
 ]
 
-const getName = s => s.name
 
+const getName = (s) => {
+    return s.name
+}
 console.log(students.map(getName)) //используем имя функции в кач-ва callback
 //console.log(students.map(st => st.name)) используем ЛИТЕРАЛ функции в кач-ва callback
 
@@ -54,7 +56,7 @@ console.log(itFilter(callbackFilter, students)) // передаем коолбе
 function itFilter(callback, array) {
     const newArray = []
     for (let i = 0; i < array.length; i++) {
-        if (callback(array[i]) === true) {
+        if (callback(array[i])) {
             newArray.push(array[i])
         }
     }
@@ -79,3 +81,18 @@ function itFind(callback, array) {
 const getJhon = s => s.name === 'Jhon' //колбэк
 console.log(itFind(getJhon, students)) //наша функция
 console.log(itFind(getMarried, students)) //наша функция
+
+
+const callbackTest = (s) => {
+    return s.name === "Bob"
+}
+
+const myFind = (callback, array) => {
+    for (let i = 0; i < array.length; i++) {
+        if (callback(array[i])) {
+            return array[i]
+        }
+    }
+}
+
+myFind(callbackTest, students)
