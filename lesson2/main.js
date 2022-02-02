@@ -48,8 +48,8 @@ function itMap(callback, array) {
 // --Фильтер метод--
 callbackFilter = (s) => {
     return s.scores > 100
-}
-console.log(itFilter(callbackFilter, students))
+} //колбек
+console.log(itFilter(callbackFilter, students)) // передаем коолбек и массив в функцию ниже
 
 function itFilter(callback, array) {
     const newArray = []
