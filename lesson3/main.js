@@ -18,20 +18,22 @@ big.addEventListener('click', handler)
 
 
 function handler(e){
-    console.log(e.target)
+    console.log(e.currentTarget.id) //не идет дальше по дочерним элементам (от дочерного к родительскому) в отличии от target
+    //отвечает на вопрос кто меня вызвал
 }
 
 function onClickHandler(e) {
     alert('yo')
-    e.stopPropagation() // остановка распространения по цепочке родителя -> выполнил и пока
+    e.stopPropagation() // остановка распространения по цепочке родителя -> выполнил и пока, остановка всплытия
     console.log(e.target.name)
-    //return undefined если нет ретурна
+    //отвечает на вопрос с кого началось
+    // return undefined если нет ретурна
 }
 
 //() - вызов функции, а название это ссылка на функцию
 // в качестве обработчика исп или имя или литерал! но не вызов
-small.onclick = onClickHandler
-big.onclick = () => alert('yo')
+// small.onclick = onClickHandler
+// big.onclick = () => alert('yo')
 // small.onclick = null //обработчика больше нет, мы его сняли
 
 medium.addEventListener('click', onClickHandler) //позволяет исп-ть несколько функций  и принимает 3-й параметр для обработки события не ток на стадии всплытия
