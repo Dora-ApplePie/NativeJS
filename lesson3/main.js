@@ -1,7 +1,7 @@
 //---урок номер 3--
 //событие =>
-//генерирует объект, со сведениями о произошедшем событии =>
-//вызов функции-обработчика с этим объектом в качестве параметра
+//,браузер генерирует объект, со сведениями о произошедшем событии => event
+// вызов функции-обработчика с этим объектом в качестве параметра
 
 //объект, со сведениями о событии => e && ev && event
 //Функция => обработчик, handler, сдушатель, listener, подписчик, subscriber
@@ -9,13 +9,21 @@
 //e.currentTarget => элемент, который вызвал обработчик в процессе всплытия, оно меняется при всплытии события
 
 const small = document.getElementById('small')
-const med = document.getElementById('medium')
+const medium = document.getElementById('medium')
 const big = document.getElementById('big')
 
+small.addEventListener('click', handler)
+medium.addEventListener('click', handler)
+big.addEventListener('click', handler)
 
+
+function handler(e){
+    console.log(e.target)
+}
 
 function onClickHandler(e) {
-    e.stopPropagation() // остановка распространения по цепочке родителя - выполнил и пока
+    alert('yo')
+    e.stopPropagation() // остановка распространения по цепочке родителя -> выполнил и пока
     console.log(e.target.name)
     //return undefined если нет ретурна
 }
@@ -24,9 +32,10 @@ function onClickHandler(e) {
 // в качестве обработчика исп или имя или литерал! но не вызов
 small.onclick = onClickHandler
 big.onclick = () => alert('yo')
-// big.onclick = onClickHandler
+// small.onclick = null //обработчика больше нет, мы его сняли
 
-//small.onclick = null //обработчика больше нет
+medium.addEventListener('click', onClickHandler) //позволяет исп-ть несколько функций  и принимает 3-й параметр для обработки события не ток на стадии всплытия
+// medium.removeEventListener('click', onClickHandler)//удаление -> обработчика больше нет
 
-//small.addEventListener('click', onClickHandler) //позволяет исп-ть несколько функций  и принимает 3-й параметр для обработки события не ток на стадии всплытия
-//small.removeEventListener('click', onClickHandler)//обработчика больше нет
+medium.addEventListener('click', () => {alert('HI')}) // сработает при вызове и после отрисовки
+//medium.addEventListener('click', alert('HI')) // сработает при загрузке страницы перед отрисовкой, так как передали параметр в функцию
