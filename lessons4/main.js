@@ -1,6 +1,7 @@
 const todoList_ID1 = "13kd-98kd" //v1()
 const todoList_ID2 = "23kd-57kd" //v1()
 const todoList_ID3 = "33kd-60kd" //v1()
+
 const todoLists = [
     {
         id: todoList_ID1,
@@ -40,10 +41,13 @@ const tasks = {
     ]
 }
 
-console.log(tasks[todoList_ID1]) //обращение к массиву
-
 //обращение к массиву -> обращение к объекту и его свойству тайтл
 console.log(tasks[todoList_ID1].find(t => t.id === '99ut-06kf').title)
+
+console.log({...tasks, [todoList_ID1]: [...tasks[todoList_ID1], {id: "e-06kr", title: "Redux", isDone: false}]})
+//добавление таски в ассоциативный массив
+
+console.log(tasks[todoList_ID1]) //обращение к массиву
 
 //--- "reduce" part 2 of lesson 4 ---
 

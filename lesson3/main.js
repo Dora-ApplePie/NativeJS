@@ -18,7 +18,11 @@ big.addEventListener('click', handler)
 
 
 function handler(e){
-    console.log(e.currentTarget.id) //не идет дальше по дочерним элементам (от дочерного к родительскому) в отличии от target
+    e.stopPropagation()
+    if(e.target.tagName === "BUTTON"){
+        console.dir(e.target.name)
+    }
+    //console.log(e.currentTarget.id) //не идет дальше по дочерним элементам (от дочерного к родительскому) в отличии от target
     //отвечает на вопрос кто меня вызвал
 }
 
