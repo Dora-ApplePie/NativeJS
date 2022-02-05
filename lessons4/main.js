@@ -51,6 +51,18 @@ console.log(tasks[todoList_ID1]) //обращение к массиву
 
 //--- "reduce" part 2 of lesson 4 ---
 
+const numbers = [1, 2, 3, 4, 7, 5, 6]
+
+console.log(numbers.reduce((sum, elements) => {
+    return sum + elements // при запуске будет в acc 1 так как в el 1, а затем и в el теперь будет 2 после в acc будет 1+2=3 и в конце будет 28
+}, 0)) // если не передавать значение 0, то итерация массива начнется с первого элемента массива
+//проще говоря на старте у нас 0 в sum (acc)
+//далее прибавляем первый el (1) к sum = 1
+//теперь sum у нас 1 и мы придавляем next element = 3
+//и тд. в итоге у нас 28
+
+console.log(numbers.reduce((max, el) => max > el ? max : el)) //вернет максимальный элемент массива 7
+
 let students = [
     {
         name: 'Nick',
@@ -72,22 +84,38 @@ let students = [
     },
 ];
 
-const numbers = [1, 2, 3, 4, 7, 5, 6]
+console.log(students.reduce((acc, el) => {
+    return acc + el.score //сумма элементов в объекте массива
+}, 0)) // если не передавать значение 0, то итерация массива начнется с первого элемента массива
 
-console.log(numbers.reduce((sum, elements) => {
-    return sum + elements // при запуске будет в acc 1 так как в el 1, а затем и в el теперь будет 2 после в acc будет 1+2=3 и в конце будет 28
-}, 0))
-//проще говоря на старте у нас 0 в sum (acc)
-//далее прибавляем первый el (1) к sum = 1
-//теперь sum у нас 1 и мы придавляем next element = 3
-//и тд. в итоге у нас 28
+console.log(students.reduce((best, st) => best.score > st.score ? best : st)) //поиск максимального
+
+
+
+console.log(students.map(st => {
+    return {...st, score: st.score + 10}
+})) // WITH MAP OR
+//WITH REDUCE
+console.log(students.reduce((arr, st) => {
+        return arr.concat({...st, score: st.score + 10})
+    }, [])
+)//используем concat потому что push возращает количество элементов сколько находится в массиве
+
+console.log(students.reduce((arr, st) => {
+     arr[st.name] = [st. age, st.score]
+    return arr
+}, {}))
+
+//old school через for
+let data = {};
+for (let i = 0; i < students.length; i++){
+    data[students[i].name] = [students[i].age, students[i].score]
+}
+console.log(data)
+
 
 console.log(students.reduce((acc, el) => {
-    return acc + el.score
-}, 0))
-
-console.log(students.reduce((acc, el) => {
-    if (el.score >= 250){
+    if (el.score >= 250) {
         acc.push(el)
     }
     return acc
