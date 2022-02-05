@@ -74,9 +74,13 @@ let students = [
 
 const numbers = [1, 2, 3, 4, 7, 5, 6]
 
-console.log(numbers.reduce((acc, elements) => {
-    return acc + elements // при запуске будет в acc 1 так как в el 1, а затем и в el теперь будет 2 после в acc будет 1+2=3 и в конце будет 28
+console.log(numbers.reduce((sum, elements) => {
+    return sum + elements // при запуске будет в acc 1 так как в el 1, а затем и в el теперь будет 2 после в acc будет 1+2=3 и в конце будет 28
 }, 0))
+//проще говоря на старте у нас 0 в sum (acc)
+//далее прибавляем первый el (1) к sum = 1
+//теперь sum у нас 1 и мы придавляем next element = 3
+//и тд. в итоге у нас 28
 
 console.log(students.reduce((acc, el) => {
     return acc + el.score
