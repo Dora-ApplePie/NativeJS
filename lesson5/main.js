@@ -43,11 +43,32 @@ let students = [
         isMarried: false,
         score: 666
     },
+    {
+        name: 'kate',
+        age: 37,
+        isMarried: false,
+        score: 666
+    }
 ];
 
 console.log([...students].sort((x, y) => x.score - y.score)) // по очкам по возрастанию
 
-console.log(students.sort((x, y) => x.name.toLowerCase() < y.name.toLowerCase() ? -1 : 1))// по имени по возрастанию
+console.log([...students].sort((x, y) => x.name.toLowerCase() < y.name.toLowerCase() ? -1 : 1))// по имени по возрастанию
+
+
+//--МОЯ СОРТИРОВКА--
+const arrayNum = [80, 5, 1000, 90, 22, 4, 1, 10, 55, 41, -30]
+
+const mySort = (arr) => {
+    let sortArr = [];
+    const copyArr = [...arr]
+    for (let i = 0; i < copyArr.length; i++) {
+       sortArr.push(...arr.splice(arr.indexOf(Math.min(...arr)), 1))
+    }
+    return sortArr
+}
+
+console.log(mySort(arrayNum))
 
 
 
