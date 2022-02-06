@@ -63,12 +63,30 @@ const mySort = (arr) => {
     let sortArr = [];
     const copyArr = [...arr]
     for (let i = 0; i < copyArr.length; i++) {
-       sortArr.push(...arr.splice(arr.indexOf(Math.min(...arr)), 1))
+        sortArr.push(...arr.splice(arr.indexOf(Math.min(...arr)), 1))
     }
     return sortArr
 }
 
 console.log(mySort(arrayNum))
 
+//--ПУЗЫРЬКОВАЯ СОРТИРОВКА--
 
+const newArray = [80, 5, 1000, 90, 22, 4, 1, 10, 55, 41, -20]
 
+const sorting = (arr) => {
+    let isSorted;
+    for (let i = 0; i < arr.length; i++) {
+        isSorted = true
+        for (let j = 0; j < arr.length - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                isSorted = false;
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            }
+        }
+        if (isSorted) {
+            return arr
+        }
+    }
+}
+console.log(sorting(newArray))
